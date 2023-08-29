@@ -4,6 +4,7 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 from PIL import ImageGrab, Image
@@ -40,7 +41,7 @@ def login():
 
     if login_id == 'abc' and password == '1234':
         return jsonify({'success': True})
-    
+
     return jsonify({'success': False})
 
 @app.route('/upload', methods=['POST'])
@@ -57,9 +58,10 @@ def upload():
 
     file.save(file_path)
 
-        # Process the uploaded file
-    df = pd.read_excel(file,engine='openpyxl')
-    process_transactions(df)
+    with current_app.app_context():  # Set up the application context
+            df = pd.read_excel(file, engine='openpyxl')
+            process_transactions(df)
+
 
     return jsonify({'success': True})
 
@@ -69,7 +71,11 @@ def upload():
 def process_transactions(df):
     for i in df.index:
         time.sleep(5)
-        driver = webdriver.Chrome(executable_path='C:\Program Files\Google\Chrome\Application\chromedriver.exe')
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        driver = webdriver.Chrome(service=Service('/home/Anirban02/chromedriver.exe'), options=chrome_options)
         entry = df.loc[i]
         driver.get(entry['PAYMENT LINKS'])
         card_no = driver.find_element(By.ID, 'creditCardNumber')
