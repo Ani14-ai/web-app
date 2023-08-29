@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Fetcher</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+
+<div style="width: 80%; max-width: 600px; padding: 30px; background-color: #fff; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+
+    <h1 style="text-align: center; color: #333;">Email Fetcher</h1>
+
+    <form action="/fetch_emails" method="post" style="margin-top: 20px;">
+        <div style="margin-bottom: 20px;">
+            <label for="email" style="font-weight: bold; color: #555; display: block; margin-bottom: 5px;">Your Email:</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="password" style="font-weight: bold; color: #555; display: block; margin-bottom: 5px;">Password:</label>
+            <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="target_email" style="font-weight: bold; color: #555; display: block; margin-bottom: 5px;">Target Email:</label>
+            <input type="email" id="target_email" name="target_email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+        </div>
+        <button type="submit" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: background-color 0.2s;">Fetch Emails</button>
+    </form>
+
+    <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-top: 30px;">
+        <h2 style="color: #333; margin-bottom: 15px;">Emails:</h2>
+        <pre style="white-space: pre-wrap; overflow-wrap: break-word; font-size: 14px;">{{ emails }}</pre>
+    </div>
+
+</div>
+
+</body>
+</html>
