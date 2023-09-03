@@ -8,7 +8,7 @@ from io import BytesIO
 app = Flask(__name__)
 
 # Load and preprocess the dataset
-data = pd.read_csv("C:\\Users\chatt\Dropbox\PC\Downloads\Mall_Customers.csv")
+data = pd.read_csv("Mall_Customers.csv")
 x = data["Annual Income (k$)"]
 y = data["Spending Score (1-100)"]
 X = np.array(list(zip(x, y)))
